@@ -1,3 +1,4 @@
+setwd("C:/Users/Admin/Desktop/TANPHAT/hocotruong/Năm ba 2025-2026/HK2_A/Phantichvatrucquandulieu/LAB/lab_02")
 
 # ============================================================
 # BƯỚC 0: ĐỌC VÀ KHÁM PHÁ DỮ LIỆU BAN ĐẦU
@@ -17,6 +18,57 @@ str(du_lieu)
 
 # Xem thống kê tóm tắt: min, max, mean, số NA...
 summary(du_lieu)
+
+
+# Liệt kê tất cả các cột nhị phân (chỉ có giá trị 0 và 1)
+cac_cot_nhi_phan <- c(
+  # Nhân khẩu học
+  "SEX", "SIM_GIPERT",
+  
+  # Loạn nhịp tiền sử (nr)
+  "nr_11", "nr_01", "nr_02", "nr_03", "nr_04", "nr_07", "nr_08",
+  
+  # Block dẫn truyền tiền sử (np)
+  "np_01", "np_04", "np_05", "np_07", "np_08", "np_09", "np_10",
+  
+  # Bệnh lý nội tiết
+  "endocr_01", "endocr_02", "endocr_03",
+  
+  # Bệnh phổi mãn tính
+  "zab_leg_01", "zab_leg_02", "zab_leg_03", "zab_leg_04", "zab_leg_06",
+  
+  # Biến chứng nhập viện
+  "O_L_POST", "K_SH_POST", "MP_TP_POST", "SVT_POST", "GT_POST", "FIB_G_POST",
+  
+  # Vị trí nhồi máu thất phải
+  "IM_PG_P",
+  
+  # Nhịp cơ bản ECG (ritm_ecg_p)
+  "ritm_ecg_p_01", "ritm_ecg_p_02", "ritm_ecg_p_04",
+  "ritm_ecg_p_06", "ritm_ecg_p_07", "ritm_ecg_p_08",
+  
+  # Loạn nhịp ECG (n_r_ecg_p)
+  "n_r_ecg_p_01", "n_r_ecg_p_02", "n_r_ecg_p_03", "n_r_ecg_p_04",
+  "n_r_ecg_p_05", "n_r_ecg_p_06", "n_r_ecg_p_08", "n_r_ecg_p_09", "n_r_ecg_p_10",
+  
+  # Block dẫn truyền ECG (n_p_ecg_p)
+  "n_p_ecg_p_01", "n_p_ecg_p_03", "n_p_ecg_p_04", "n_p_ecg_p_05",
+  "n_p_ecg_p_06", "n_p_ecg_p_07", "n_p_ecg_p_08", "n_p_ecg_p_09",
+  "n_p_ecg_p_10", "n_p_ecg_p_11", "n_p_ecg_p_12",
+  
+  # Thuốc tiêu sợi huyết (fibr_ter)
+  "fibr_ter_01", "fibr_ter_02", "fibr_ter_03", "fibr_ter_05",
+  "fibr_ter_06", "fibr_ter_07", "fibr_ter_08"
+  
+)
+
+# Chuyển tất cả một lần bằng lapply
+# levels = c(0, 1): 0 là nhóm tham chiếu (Không)
+# labels = c("Khong", "Co"): đặt nhãn dễ đọc
+du_lieu[cac_cot_nhi_phan] <- lapply(
+  du_lieu[cac_cot_nhi_phan],
+  function(x) factor(x, levels = c(0, 1), labels = c("Khong", "Co"))
+)
 
 # Kiểm tra kích thước ban đầu: bao nhiêu dòng, bao nhiêu cột
 dim(du_lieu)
@@ -845,6 +897,8 @@ cat("NA sau xử lý TIKL_S_n:", sum(is.na(du_lieu$TIKL_S_n)), "\n\n")
 cat("NA trong TRENT_S_n:", sum(is.na(du_lieu$TRENT_S_n)), "\n")
 du_lieu$TRENT_S_n[is.na(du_lieu$TRENT_S_n)] <- 0
 cat("NA sau xử lý TRENT_S_n:", sum(is.na(du_lieu$TRENT_S_n)), "\n\n")
+
+
 
 
 
