@@ -143,11 +143,18 @@ missCO2$uptake <- as.integer(missCO2$uptake)
 missCO2[is.na(missCO2$uptake),"uptake"] <- 20
 
 
+
+missCO2[is.na(missCO2$uptake), 'uptake'] <- 20 
+missCO2$uptake[is.na(missCO2$uptake)] <-20 
+
+
 # 7. Điền các giá trị conc bị thiếu với giá trị trung bình của conc.
 
 missCO2[is.na(missCO2$conc), "conc"] <- mean(missCO2$conc, na.rm = TRUE)#na.rm = TRUE giúp loại bỏ NA khi tính TB, 
                                                              #nếu không thì mean sẽ trả về NA nếu cột đó có NA
 missCO2
+
+
 
 # 8. Trích xuất giá trị số từ biến weight và lưu trong cột mới
 # "weightNumber". Điểm thưởng nếu giữ mã trong một dòng,
@@ -173,8 +180,10 @@ saveRDS(women , file = "women_RDS.rds") # định dạng nhị phân riêng củ
 save(women , missCO2, file  = "multiple_datasets.RData") # một định dạng kiểu "nhà kho" dùng lưu trữ nhiều đối tượng cùng lúc,
                                                           # dùng load() (lần sau dùng thì nó vẫn có tên cũ  women , missCO2 )
 
+write.csv(women, file ='test.csv')
 
-
+saveRDS(women, file = ('test2.rds'))
+save(women, missCO2, file = 'multitest.RData')
 
 data()
 View()

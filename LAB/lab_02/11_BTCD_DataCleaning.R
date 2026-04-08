@@ -51,6 +51,8 @@ clients$Dt_Customer <- as.Date(clients$Dt_Customer,format = "%d-%m-%Y")
 lst_int <- c("Income","Kidhome","Teenhome","Recency")
 clients[,lst_int] <- lapply(clients[,lst_int], as.integer) 
 
+
+
 # 3. Kiểm tra xem có giá trị nào bị thiếu trong bộ dữ liệu không.
 # a) Những biến nào có chứa giá trị bị thiếu?
 
@@ -73,6 +75,13 @@ head(clients[list_na,])
 # c) Bạn sử dụng đoạn mã nào để điền các giá trị bị thiếu của Year_Birth (nếu có)?
 clients$Year_Birth[is.na(clients$Year_Birth)] <- median(clients[,"Year_Birth"], na.rm = TRUE)
 clients$Year_Birth[!complete.cases(clients$Year_Birth)]
+
+
+data[is.na(data$col),'col'] <- median(data$col, na.rm =TRUE )
+
+data$col[!complete.cases(data$col)]
+
+
 
 clients$MntWines[is.na(clients$MntWines)] <- mean(clients[,"MntWines"], na.rm = TRUE)
 clients$MntWines[!complete.cases(clients$MntWines)]
@@ -139,7 +148,7 @@ save(clients, file = "clientsInR.RData")
 
 load("clientsInR.RData")
 
-
+save(data, file = 'data.RData')
 
 
 

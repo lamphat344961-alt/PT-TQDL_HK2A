@@ -937,7 +937,15 @@ classify_student(8.7)
 # Input: lương cơ bản, phụ cấp, số ngày làm việc, số giờ tăng ca
 # Output: lương ròng sau thuế
 
- <- function(luong_cb, phu_cap, ngay_lam, gio_ot) {
+sa <- function (lcb, pc,sn, tc) {
+  luong <- (lcb / 31 ) * sn
+  return ((luong+ pc)  * 0.9)
+  
+}
+
+
+
+Salary <- function(luong_cb, phu_cap, ngay_lam, gio_ot) {
   # 1. Tính lương theo ngày (giả định tháng có 26 ngày công)
   luong_ngay <- (luong_cb / 26) * ngay_lam
   
@@ -1012,6 +1020,8 @@ data_lop_hoc <- data.frame(
 )
 
 my_student(data_lop_hoc)
+
+
 # ==============================================================================
 # TÀI LIỆU THAM KHẢO
 # ==============================================================================

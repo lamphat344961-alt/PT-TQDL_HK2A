@@ -5,6 +5,7 @@ setwd("C:/Users/Admin/Desktop/TANPHAT/hocotruong/Năm ba 2025-2026/HK2_A/Phantic
 #Load() dữ liệu  .csv
 alcohol <- read.csv("student-alcohol.csv")
 
+alcoho <- read.csv("C:/Users/Admin/Desktop/TANPHAT/hocotruong/Năm ba 2025-2026/HK2_A/Phantichvatrucquandulieu/LAB/lab_02")
 
 #Xem head()
 head(alcohol)
@@ -23,7 +24,8 @@ alcohol <- alcohol[,-1]
 
 #Bước 2 Xử lý Missing data
 # tìm các dòng có dữ liệu thiếu 
-alcohol[!complete.cases(alcohol) , ]
+
+alcohol[!complete.cases(),]
 
 # Đếm số dòng bị thiếu
 length(alcohol[!complete.cases(alcohol),]) # Nó sẽ trả về số lượng cột

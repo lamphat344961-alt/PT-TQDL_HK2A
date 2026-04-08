@@ -83,6 +83,7 @@ barplot(table_cyl,
         col = "orange",
         horiz = TRUE)  # Vẽ ngang
 
+horiz
 # 9.2.3 Biểu đồ cột cho dữ liệu số
 # Ví dụ: Điểm trung bình của 5 sinh viên
 students <- c("Tùng", "Hùng", "Dũng", "Linh", "Mai")
@@ -421,16 +422,28 @@ plot(months, revenue_A,
      ylab = "Doanh thu (triệu đồng)",
      col = "blue",
      lwd = 2,
+     lty = 4,
      ylim = c(40, 100))
 
 # Thêm đường thứ 2
-lines(months, revenue_B, col = "red", lwd = 2)
+lines(months, revenue_B, col = "red", lwd = 2, lty = 4)
 
 # Thêm chú thích
 legend("topleft",
        legend = c("Chi nhánh A", "Chi nhánh B"),
        col = c("blue", "red"),
        lwd = 2)
+
+
+
+legend('topleft' ,
+       legend = c("Chi nhánh A", "Chi nhánh B"),
+       col = c('blue', 'red'),
+       lwd = 2, 
+       lty = 4
+        
+       )
+lines(datax,datamy , col, lwd , lty)
 
 # 9.6.4 Kết hợp đường và điểm
 
@@ -457,6 +470,8 @@ students <- c(450, 320, 280, 350)
 
 pie(students, labels = faculties)
 
+pie(student,labels = face)
+
 # 9.7.2 Tùy chỉnh Pie Chart
 
 pie(students,
@@ -474,6 +489,7 @@ pie(students,
     col = c("lightblue", "lightcoral", "lightgreen", "lightyellow"))
 
 
+label <- paste(data, 'a', data1 ,'b', 
 # 9.7.3 Lưu ý khi sử dụng Pie Chart
 
 # Pie chart tốt cho:
@@ -931,6 +947,11 @@ barplot(data_matrix,
         legend.text = rownames(data_matrix),
         args.legend = list(x = "topleft"))
 
+
+legend('topleft' ,
+       legend = rownames(data_matrix)
+       fill = c("lightblue", "lightgreen", "orange", "pink"),
+       )
 # 2. Line plot cho từng sản phẩm qua 4 quý
 # Vẽ sản phẩm A 
 plot(1:4, data_matrix[, 1], type = "b", col = "blue", ylim = c(100, 250),
